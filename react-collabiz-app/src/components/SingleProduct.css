@@ -17,10 +17,9 @@
     display: flex;
     flex-direction: row;
     align-items: left;
-    width: 65%;
-    margin: 1em 1em 1em 18em;
     padding: 1em;
-    border: 1px solid gray;
+    /*border: 0px solid gray;*/
+    border-bottom: solid 0.5px #acacac;
     
   }
   

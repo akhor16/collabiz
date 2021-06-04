@@ -2,7 +2,6 @@ import React from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import CollabizLogo from "./resources/CollaBiz2.png"
 
 function Header() {  
   return (
@@ -10,7 +9,7 @@ function Header() {
       
         <img
           className="header__logo"
-          src={CollabizLogo}
+          src="/resources/CollaBiz2.png"
         //   src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
         />
       
