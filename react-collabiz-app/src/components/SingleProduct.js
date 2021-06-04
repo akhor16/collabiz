@@ -4,7 +4,7 @@ import './SingleProduct.css';
 function SingleProduct(props) {
     return (
         <div className = {"products"}>
-            <img className = {"products_img"} src="/resources/generator1.jpg" />
+            <img className = {"products_img"} src={props.product.img_src} />
             <div>
                 <h4>{props.product.title + ' ' + props.product.id}</h4>
                 <br />
