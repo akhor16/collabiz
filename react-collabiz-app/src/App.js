@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import ProductsPage from "./components/ProductsPage";
 import Navbar from "./components/Navbar";
-import SingleProduct from "./components/SingleProduct";
+import EachProduct from "./components/EachProduct";
 import Pagination from "./components/Pagination";
 import "./App.css";
 import ReactJsPagination from "react-js-pagination";
@@ -189,27 +189,27 @@ const App = () => {
                   <div>
                     <Route path="/liquids">
                       {liquidsVisible.map((x) => (
-                        <SingleProduct key={x.id} product={x} />
+                        <EachProduct key={x.id} product={x} />
                       ))}
                     </Route>
                     <Route path="/Electronics">
                       {electronicsVisible.map((x) => (
-                        <SingleProduct key={x.id} product={x} />
+                        <EachProduct key={x.id} product={x} />
                       ))}
                     </Route>
                     <Route path="/NaturalGoods">
                       {naturalVisible.map((x) => (
-                        <SingleProduct key={x.id} product={x} />
+                        <EachProduct key={x.id} product={x} />
                       ))}
                     </Route>
                     <Route path="/Chemicals">
                       {chemicalsVisible.map((x) => (
-                        <SingleProduct key={x.id} product={x} />
+                        <EachProduct key={x.id} product={x} />
                       ))}
                     </Route>
                     <Route exact path="/">
                       {allCatsVisible.map((x) => (
-                        <SingleProduct key={x.id} product={x} />
+                        <EachProduct key={x.id} product={x} />
                       ))}
                     </Route>
                   </div>

@@ -1,7 +1,7 @@
 import React from 'react'
-import './SingleProduct.css';
+import './EachProduct.css';
 
-function SingleProduct(props) {
+function EachProduct(props) {
     return (
         <div className = {"products"}>
             <img className = {"products_img"} src={props.product.img_src} />
@@ -14,7 +14,7 @@ function SingleProduct(props) {
     )
 }
 
-export default SingleProduct
+export default EachProduct
 
 
 
