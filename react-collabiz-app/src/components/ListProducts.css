@@ -1,0 +1,11 @@
+
+.row_flex {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+.page {
+  margin-left: 250px;
+  padding-left: 50px;
+}

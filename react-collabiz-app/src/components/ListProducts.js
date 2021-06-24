@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useState } from "react";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import EachProduct from "./components/EachProduct";
-import SingleProduct from "./components/SingleProduct";
-import "./App.css";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import EachProduct from "./EachProduct";
+// import Pagination from "./Pagination";
+import "./ListProucts.css";
 import ReactJsPagination from "react-js-pagination";
 
 import ReactDOM from "react-dom";
@@ -141,7 +141,7 @@ const data = [
 
 const perPage = 5;
 
-const App = () => {
+const ListProucts = () => {
   const [page, setPage] = useState(1);
 
   const filterDataCategory = (cat) => {
@@ -175,22 +175,15 @@ const App = () => {
   
 
   return (
-    <div className="app">
+    <div className="ListProucts">
       <Router>
         <Switch>
-        <Route path="/SingleProduct">
-          <div>
-            <Header />
-            <SingleProduct item={allCatsVisible[1]}/>
-          </div>
-        </Route>
+          
             <div>
               <Header />
-              
               <div className={"row_flex"}>
                 <Navbar />
                 {/* <ProductsPage /> */}
-                
                 <div className="page">
                   <div>
                     <Route path="/liquids">
@@ -239,4 +232,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ListProucts;
