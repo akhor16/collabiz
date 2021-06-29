@@ -1,143 +1,22 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import EachProduct from "./components/EachProduct";
-import SingleProduct from "./components/SingleProduct";
+import SingleProduct from "./pages/SingleProduct";
+import Electronics from "./pages/Electronics";
 import "./App.css";
 import ReactJsPagination from "react-js-pagination";
+import { data } from "./data";
 
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-const allCategories = "/"
+const allCategories = "/";
 const electronics = "Electronics";
 const liquids = "Liquids";
-const naturalGoods = "NaturalGoods"
-const chemicals = "Chemicals"
-
-const data = [
-  {
-    id: 1,
-    title: "Generator",
-    category: electronics,
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 2,
-    title: "Generator",
-    category: electronics,
-    img_src:"/resources/generator2.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 3,
-    title: "Generator",
-    category: electronics,
-    img_src:"/resources/server1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 4,
-    title: "Generator",
-    category: electronics,
-    img_src:"/resources/server2.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 5,
-    title: "floor",
-    category: naturalGoods,
-    img_src:"/resources/floor1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 6,
-    title: "floor",
-    category: naturalGoods,
-    img_src:"/resources/floor2.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 7,
-    title: "Generator",
-    category: electronics,
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 8,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 9,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 10,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 11,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 12,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 13,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 14,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-  {
-    id: 15,
-    title: "Generator",
-    category: "Electronics",
-    img_src:"/resources/generator1.jpg",
-    description:
-      "This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel, This is an electricity generator which works on diesel fuel,",
-  },
-];
+const naturalGoods = "NaturalGoods";
+const chemicals = "Chemicals";
 
 const perPage = 5;
 
@@ -148,91 +27,59 @@ const App = () => {
     if (cat == allCategories) {
       return data;
     }
-   
+
     return data.filter(function (item) {
       return item.category == cat;
     });
-  
-  }
+  };
 
   const visibleItems = (cat) => {
     return filterDataCategory(cat).slice(
       (page - 1) * perPage,
       (page - 1) * perPage + perPage
     );
-  }
+  };
 
   const electronicsVisible = visibleItems(electronics);
   const liquidsVisible = visibleItems(liquids);
   const naturalVisible = visibleItems(naturalGoods);
-  const chemicalsVisible = visibleItems(chemicals)
+  const chemicalsVisible = visibleItems(chemicals);
   const allCatsVisible = visibleItems(allCategories);
 
   const onPageChange = (page) => {
     setPage(page);
   };
 
-  
-
   return (
     <div className="app">
       <Router>
+        <Header />
         <Switch>
-        <Route path="/SingleProduct">
-          <div>
-            <Header />
-            <SingleProduct item={allCatsVisible[1]}/>
-          </div>
-        </Route>
-            <div>
-              <Header />
-              
-              <div className={"row_flex"}>
-                <Navbar />
-                {/* <ProductsPage /> */}
-                
-                <div className="page">
-                  <div>
-                    <Route path="/liquids">
-                      {liquidsVisible.map((x) => (
-                        <EachProduct key={x.id} product={x} />
-                      ))}
-                    </Route>
-                    <Route path="/Electronics">
-                      {electronicsVisible.map((x) => (
-                        <EachProduct key={x.id} product={x} />
-                      ))}
-                    </Route>
-                    <Route path="/NaturalGoods">
-                      {naturalVisible.map((x) => (
-                        <EachProduct key={x.id} product={x} />
-                      ))}
-                    </Route>
-                    <Route path="/Chemicals">
-                      {chemicalsVisible.map((x) => (
-                        <EachProduct key={x.id} product={x} />
-                      ))}
-                    </Route>
-                    <Route exact path="/">
-                      {allCatsVisible.map((x) => (
-                        <EachProduct key={x.id} product={x} />
-                      ))}
-                    </Route>
-                  </div>
-                  <ReactJsPagination
-                    hideFirstLastPages
-                    prevPageText={"prev"}
-                    nextPageText={"next"}
-                    activePage={page}
-                    itemsCountPerPage={perPage}
-                    totalItemsCount={data.length}
-                    pageRangeDisplayed={5}
-                    onChange={onPageChange}
-                  />
-                </div>
+          <Route path="/SingleProduct">
+            <SingleProduct item={allCatsVisible[1]} />
+          </Route>
+          <div className={"row_flex"}>
+            <Navbar />
+            <div className="page">
+              <div>
+                <Route path="/Liquids">
+                  <Electronics cat={"Liquids"} />
+                </Route>
+                <Route path="/Electronics">
+                  <Electronics cat={"Electronics"} />
+                </Route>
+                <Route path="/NaturalGoods">
+                  <Electronics cat={"NaturalGoods"} />
+                </Route>
+                <Route path="/Chemicals">
+                  <Electronics cat={"Chemicals"} />
+                </Route>
+                <Route exact path="/">
+                  <Electronics cat={"/"} />
+                </Route>
               </div>
             </div>
-          
+          </div>
         </Switch>
       </Router>
     </div>
