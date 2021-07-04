@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import EachProduct from "./components/EachProduct";
 import SingleProduct from "./pages/SingleProduct";
 import Electronics from "./pages/Electronics";
+import AddProduct from "./components/AddProduct";
 import "./App.css";
 import ReactJsPagination from "react-js-pagination";
 import { data } from "./data";
@@ -57,6 +58,9 @@ const App = () => {
         <Switch>
           <Route path="/SingleProduct">
             <SingleProduct item={allCatsVisible[1]} />
+          </Route>
+          <Route path="/AddProduct">
+            <AddProduct />
           </Route>
           <div className={"row_flex"}>
             <Navbar />

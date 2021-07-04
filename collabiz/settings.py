@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'collabiz.urls'
+ROOT_URLCONF = 'business.urls'
 
 TEMPLATES = [
     {
