@@ -28,4 +28,6 @@ router.register(r"items", views.ItemsView, "items")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
+    path("products/delete/<int:id>/",
+         views.product_delete_view, name='product-delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

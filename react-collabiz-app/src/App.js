@@ -36,7 +36,7 @@ const App = (props) => {
     console.log("IMISTANA DZALAIO");
     try {
       async function fetchData() {
-        const res = await fetch("http://localhost:8000/api/business/");
+        const res = await fetch("http://localhost:8000/api/items/");
         const todoList = await res.json();
         setItemsList(todoList);
       }
