@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { data } from "../../data";
 import ReactJsPagination from "react-js-pagination";
 import EachProduct from "../../components/EachProduct";
 
-function Electronics(props) {
+function ExploreItems(props) {
   const [page, setPage] = useState(1);
 
   const onPageChange = (page) => {
@@ -12,12 +11,8 @@ function Electronics(props) {
 
   const perPage = 10;
 
-  var filteredData = data.filter((item) => {
-    return item.category === props.cat;
-  });
-
   const visibleItems = () => {
-    return filteredData.slice(
+    return props.data.slice(
       (page - 1) * perPage,
       (page - 1) * perPage + perPage
     );
@@ -32,8 +27,8 @@ function Electronics(props) {
         prevPageText={"prev"}
         nextPageText={"next"}
         activePage={page}
-        itemsCountPerPage={5}
-        totalItemsCount={filteredData.length}
+        itemsCountPerPage={perPage}
+        totalItemsCount={props.data.length}
         pageRangeDisplayed={5}
         onChange={onPageChange}
       />
@@ -41,4 +36,4 @@ function Electronics(props) {
   );
 }
 
-export default Electronics;
+export default ExploreItems;

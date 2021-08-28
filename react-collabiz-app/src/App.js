@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import EachProduct from "./components/EachProduct";
 import SingleProduct from "./pages/SingleProduct";
 import Electronics from "./pages/Electronics";
+import ExploreItems from "./pages/ExploreItems";
 import AddProduct from "./components/AddProduct";
 import "./App.css";
 import ReactJsPagination from "react-js-pagination";
@@ -21,8 +22,30 @@ const chemicals = "Chemicals";
 
 const perPage = 5;
 
-const App = () => {
+const App = (props) => {
+  const [viewCompleted, setViewCompleted] = useState(false);
+  const [activeItem, setActiveItem] = useState({
+    title: "",
+    description: "",
+    completed: false,
+  });
+  const [itemsList, setItemsList] = useState([]);
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    console.log("IMISTANA DZALAIO");
+    try {
+      async function fetchData() {
+        const res = await fetch("http://localhost:8000/api/business/");
+        const todoList = await res.json();
+        setItemsList(todoList);
+      }
+      fetchData();
+    } catch (e) {
+      console.log("SHENAO SHENI TAVIO VIN GGONIAO");
+      console.log(e);
+    }
+  }, []); //notice the empty array here
 
   const filterDataCategory = (cat) => {
     if (cat == allCategories) {
@@ -50,6 +73,8 @@ const App = () => {
   const onPageChange = (page) => {
     setPage(page);
   };
+
+  console.log("AGIAWHGIAHWB AWINVAWINB AWF");
 
   return (
     <div className="app">
@@ -79,7 +104,7 @@ const App = () => {
                   <Electronics cat={"Chemicals"} />
                 </Route>
                 <Route exact path="/">
-                  <Electronics cat={"/"} />
+                  <ExploreItems cat={"/"} data={itemsList} />
                 </Route>
               </div>
             </div>
@@ -91,3 +116,44 @@ const App = () => {
 };
 
 export default App;
+
+// const App = () => {
+
+//     renderItems = () => {
+//       const { viewCompleted } = this.state;
+//       const newItems = this.state.todoList.filter(
+//         item => item.completed === viewCompleted
+//       );
+//       return newItems.map(item => (
+//         <li
+//           key={item.id}
+//           className="list-group-item d-flex justify-content-between align-items-center"
+//         >
+//           <span
+//             className={`todo-title mr-2 ${
+//               this.state.viewCompleted ? "completed-todo" : ""
+//             }`}
+//             title={item.description}
+//             >
+//               {item.title}
+//             </span>
+//         </li>
+//       ));
+//     };
+
+//       return (
+//         <main className="content">
+//         <div className="row">
+//           <div className="col-md-6 col-sm-10 mx-auto p-0">
+//             <div className="card p-3">
+//               <ul className="list-group list-group-flush">
+//                 {this.renderItems()}
+//               </ul>
+//             </div>
+//           </div>
+//         </div>
+//       </main>
+//       )
+//     }
+
+// export default App;

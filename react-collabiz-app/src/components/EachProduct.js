@@ -14,7 +14,7 @@ function EachProduct(props) {
     <div className={"products"}>
       <img
         className={"products_img"}
-        src={props.product.img_src}
+        src={props.product.photoUrl}
         onClick={routeChange}
       />
       <div>
