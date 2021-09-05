@@ -18,7 +18,7 @@ function EachProduct(props) {
         onClick={routeChange}
       />
       <div>
-        <h4>{props.product.title + " " + props.product.id}</h4>
+        <h4>{props.product.title}</h4>
         <br />
         <text>{props.product.description} </text>
       </div>

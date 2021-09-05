@@ -7,7 +7,7 @@ function SingleProduct(props) {
     <div className={"single-products"}>
       <img className={"single-products_img"} src={props.item.img_src} />
       <div className={"details"}>
-        <h4>{props.item.title + " " + props.item.id}</h4>
+        <h4>{props.item.title}</h4>
         <br />
         <text>{props.item.description} </text>
       </div>

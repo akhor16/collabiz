@@ -33,7 +33,6 @@ const App = (props) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log("IMISTANA DZALAIO");
     try {
       async function fetchData() {
         const res = await fetch("http://localhost:8000/api/items/");
@@ -42,7 +41,6 @@ const App = (props) => {
       }
       fetchData();
     } catch (e) {
-      console.log("SHENAO SHENI TAVIO VIN GGONIAO");
       console.log(e);
     }
   }, []); //notice the empty array here
@@ -73,8 +71,6 @@ const App = (props) => {
   const onPageChange = (page) => {
     setPage(page);
   };
-
-  console.log("AGIAWHGIAHWB AWINVAWINB AWF");
 
   return (
     <div className="app">
