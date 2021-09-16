@@ -88,16 +88,16 @@ const App = (props) => {
             <div className="page">
               <div>
                 <Route path="/Liquids">
-                  <Electronics cat={"Liquids"} />
+                  <Electronics cat={"LIQUIDS"} />
                 </Route>
                 <Route path="/Electronics">
-                  <Electronics cat={"Electronics"} />
+                  <Electronics cat={"ELECTRONICS"} />
                 </Route>
                 <Route path="/NaturalGoods">
-                  <Electronics cat={"NaturalGoods"} />
+                  <Electronics cat={"NATURAL GOODS"} />
                 </Route>
                 <Route path="/Chemicals">
-                  <Electronics cat={"Chemicals"} />
+                  <Electronics cat={"CHEMICALS"} />
                 </Route>
                 <Route exact path="/">
                   <ExploreItems cat={"/"} data={itemsList} />

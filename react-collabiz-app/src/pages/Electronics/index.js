@@ -10,9 +10,8 @@ function Electronics(props) {
   useEffect(() => {
     try {
       async function fetchData() {
-        const res = await fetch(
-          "http://localhost:8000/api/items/?category=Electronics"
-        );
+        var data_url = "http://localhost:8000/api/items?category=" + props.cat;
+        const res = await fetch(data_url);
         const todoList = await res.json();
         setItemsList(todoList);
       }
