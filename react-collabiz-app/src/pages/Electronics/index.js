@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { data } from "../../data";
 import ReactJsPagination from "react-js-pagination";
 import EachProduct from "../../components/EachProduct";
 
 function Electronics(props) {
   const [page, setPage] = useState(1);
+  const [itemsList, setItemsList] = useState([]);
+
+  useEffect(() => {
+    try {
+      async function fetchData() {
+        const res = await fetch(
+          "http://localhost:8000/api/items/?category=Electronics"
+        );
+        const todoList = await res.json();
+        setItemsList(todoList);
+      }
+      fetchData();
+    } catch (e) {
+      console.log(e);
+    }
+  }, []); //notice the empty array here
 
   const onPageChange = (page) => {
     setPage(page);
@@ -17,7 +33,7 @@ function Electronics(props) {
   });
 
   const visibleItems = () => {
-    return filteredData.slice(
+    return itemsList.slice(
       (page - 1) * perPage,
       (page - 1) * perPage + perPage
     );
@@ -32,8 +48,8 @@ function Electronics(props) {
         prevPageText={"prev"}
         nextPageText={"next"}
         activePage={page}
-        itemsCountPerPage={5}
-        totalItemsCount={filteredData.length}
+        itemsCountPerPage={perPage}
+        totalItemsCount={itemsList.length}
         pageRangeDisplayed={5}
         onChange={onPageChange}
       />

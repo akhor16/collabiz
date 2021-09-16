@@ -9,12 +9,15 @@ from django.core.paginator import Paginator
 
 
 class ItemsView(viewsets.ModelViewSet):
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
 
     def list(self, request):
-        perPage = 3
+        perPage = 10
         allItems = Item.objects.all()
         p = Paginator(allItems, perPage)
         page_num = request.GET.get('page', 1)
+        print("page numiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii:", page_num)
         queryset = p.page(page_num)
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
