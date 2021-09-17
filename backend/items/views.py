@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .serializers import ItemSerializer
 from rest_framework import viewsets
@@ -30,6 +31,15 @@ class ItemsView(viewsets.ModelViewSet):
         serializer = ItemSerializer(queryset, many=True)
 
         return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        title = request.data['title']
+        category = request.data['category']
+        description = request.data['description']
+        photoUrl = request.data['photoUrl']
+        Item.objects.create(title=title, category=category,
+                            description=description, photoUrl=photoUrl)
+        return HttpResponse({'message': 'Item successfully placed on Collabiz'}, status=200)
 
 
 def product_delete_view(request, id):
