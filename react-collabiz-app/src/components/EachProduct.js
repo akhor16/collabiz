@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 function EachProduct(props) {
   const history = useHistory();
-
   const routeChange = () => {
     let path = `SingleProduct`;
     history.push(path);

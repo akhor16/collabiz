@@ -13,18 +13,22 @@ class ItemsView(viewsets.ModelViewSet):
     queryset = Item.objects.all()
 
     def list(self, request):
-        perPage = 4
+        item_id = request.GET.get('id', -1)
+        if item_id != -1:
+            serializer = ItemSerializer(
+                Item.objects.get(id=item_id), many=False)
+            return Response(serializer.data)
+        perPage = 10
         allItems = Item.objects.all()
 
         p_category = request.GET.get('category', '/')
         if p_category != '/':
             allItems = Item.objects.filter(category=p_category)
         page_num = request.GET.get('page', '1')
-        print("page nummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm:", page_num)
         p = Paginator(allItems, perPage)
         queryset = p.page(page_num)
-        print("page nummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm:", queryset)
         serializer = ItemSerializer(queryset, many=True)
+
         return Response(serializer.data)
 
 
