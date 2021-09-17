@@ -19,7 +19,7 @@ class ItemsView(viewsets.ModelViewSet):
             serializer = ItemSerializer(
                 Item.objects.get(id=item_id), many=False)
             return Response(serializer.data)
-        perPage = 10
+        perPage = 30
         allItems = Item.objects.all()
 
         p_category = request.GET.get('category', '/')

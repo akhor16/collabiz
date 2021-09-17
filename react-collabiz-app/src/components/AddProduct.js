@@ -11,18 +11,18 @@ function AddProduct(props) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [photoUrl, setPhotoUrl] = useState();
+  const [photoUrl, setPhotoUrl] = useState(null);
 
   //Form Submission
-  const addFormData = () => {
-    //evt.preventDefault();
+  const addFormData = (evt) => {
+    evt.preventDefault();
     const uploadData = new FormData();
     uploadData.append("title", title);
     uploadData.append("category", category);
     uploadData.append("description", description);
-    uploadData.append("photoUrl", photoUrl, photoUrl.name);
+    uploadData.append("photoUrl", photoUrl);
 
-    fetch("http://localhost:8000/api/items", {
+    fetch("http://localhost:8000/api/items/", {
       method: "POST",
       body: uploadData,
     })
@@ -51,20 +51,22 @@ function AddProduct(props) {
                 />
               </div>
               <div className="form-group">
-                <input
-                  type="text"
+                <select
                   value={category}
                   onChange={(evt) => setCategory(evt.target.value)}
                   className="form-control"
                   id="category"
-                  placeholder="Product category"
-                  //ref="productcategory"
-                />
+                >
+                  <option value="">Select category</option>
+                  <option value="ELECTRONICS">ELECTRONICS</option>
+                  <option value="LIQUIDS">LIQUIDS</option>
+                  <option value="NATURAL GOODS">NATURAL GOODS</option>
+                  <option value="CHEMICALS">CHEMICALS</option>
+                </select>
               </div>
               <div className="form-group">
                 <label for="image">Product Image:</label>
                 <input
-                  onChange={(e) => this.handleChange(e.target.files)}
                   type="file"
                   onChange={(evt) => setPhotoUrl(evt.target.files[0])}
                   className="form-control"
@@ -86,7 +88,7 @@ function AddProduct(props) {
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={() => addFormData()}
+                onClick={addFormData}
               >
                 Submit
               </button>
